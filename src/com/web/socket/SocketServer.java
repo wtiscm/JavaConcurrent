@@ -6,15 +6,15 @@ import java.net.Socket;
 public class SocketServer {
 	static ConnectionPool pool;
 	public static void main(String[] args) throws Exception {
-		// ¼àÌıÖ¸¶¨µÄ¶Ë¿Ú
+		// ç›‘å¬æŒ‡å®šçš„ç«¯å£
 		int port = 55532;
 		ServerSocket server = new ServerSocket(port);
-		//´´½¨Ò»¸öÏß³Ì³Ø(¸öÊı10¸ö)
+		//åˆ›å»ºä¸€ä¸ªçº¿ç¨‹æ± (ä¸ªæ•°10ä¸ª)
 		DefaultThreadPool<Job> threadPool = new DefaultThreadPool<Job>(20);
-		//´´½¨Êı¾İ¿âÁ¬½Ó³Ø
+		//åˆ›å»ºæ•°æ®åº“è¿æ¥æ± 
 		pool = new ConnectionPool(10);
-		// server½«Ò»Ö±µÈ´ıÁ¬½ÓµÄµ½À´
-		System.out.println("server½«Ò»Ö±µÈ´ıÁ¬½ÓµÄµ½À´");
+		// serverå°†ä¸€ç›´ç­‰å¾…è¿æ¥çš„åˆ°æ¥
+		System.out.println("serverå°†ä¸€ç›´ç­‰å¾…è¿æ¥çš„åˆ°æ¥");
     
 		while (true) {
 			Socket socket = server.accept();

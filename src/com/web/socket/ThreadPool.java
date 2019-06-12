@@ -1,14 +1,14 @@
 package com.web.socket;
 
 public interface ThreadPool<Job extends Runnable> {
-    //鎵ц涓?涓换鍔?
+    //添加任务
     void execute(Job job);
-    //缁堟绾跨▼姹?
+    //关闭线程池的一个线程
     void shutdown();
-    //澧炲姞宸ヤ綔鑰?
+    //增加工作线程
     void addWorker(int num);
-    //鍒犻櫎宸ヤ綔鑰?
+    //减少工作线程
     void removeWorker(int num);
-    //鎴栬?呬换鍔￠槦鍒椾釜鏁?
+    //获得任务队列的个数
     int getJobNum();
 }

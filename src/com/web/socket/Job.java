@@ -19,20 +19,20 @@ public class Job implements Runnable{
     public void run() {
         try {
       	  byte[] bytes;
-            // ½¨Á¢ºÃÁ¬½Óºó£¬´ÓsocketÖĞ»ñÈ¡ÊäÈëÁ÷£¬²¢½¨Á¢»º³åÇø½øĞĞ¶ÁÈ¡
+            // å»ºç«‹å¥½è¿æ¥åï¼Œä»socketä¸­è·å–è¾“å…¥æµï¼Œå¹¶å»ºç«‹ç¼“å†²åŒºè¿›è¡Œè¯»å–
             InputStream inputStream = socket.getInputStream();
             ArrayList<Integer> num = new ArrayList<Integer>();
             while (true) {
             int first = inputStream.read();
-            //Èç¹û¶ÁÈ¡µÄÖµÎª-1 ËµÃ÷µ½ÁËÁ÷µÄÄ©Î²£¬SocketÒÑ¾­±»¹Ø±ÕÁË£¬´ËÊ±½«²»ÄÜÔÙÈ¥¶ÁÈ¡
+            //å¦‚æœè¯»å–çš„å€¼ä¸º-1 è¯´æ˜åˆ°äº†æµçš„æœ«å°¾ï¼ŒSocketå·²ç»è¢«å…³é—­äº†ï¼Œæ­¤æ—¶å°†ä¸èƒ½å†å»è¯»å–
             if(first==-1){
                 break;
               }
             int second = inputStream.read();
             int length = (first << 8) + second;
-            // È»ºó¹¹ÔìÒ»¸öÖ¸¶¨³¤µÄbyteÊı×é
+            // ç„¶åæ„é€ ä¸€ä¸ªæŒ‡å®šé•¿çš„byteæ•°ç»„
             bytes = new byte[length];
-            // È»ºó¶ÁÈ¡Ö¸¶¨³¤¶ÈµÄÏûÏ¢¼´¿É
+            // ç„¶åè¯»å–æŒ‡å®šé•¿åº¦çš„æ¶ˆæ¯å³å¯
             inputStream.read(bytes);
             String data = new String(bytes, "UTF-8");
             int id = Integer.parseInt(String.valueOf(data.charAt(5)))+100;
@@ -56,7 +56,7 @@ public class Job implements Runnable{
                     SocketServer.pool.releaseConnection(connection);
                 }   
             }else {
-				message = "Êı¾İ¿â¶ÁÈ¡³¬Ê±";
+				message = "æ•°æ®åº“è¯»å–è¶…æ—¶";
 				}
             
             OutputStream outputStream = socket.getOutputStream();
@@ -79,15 +79,15 @@ public class Job implements Runnable{
     		String str = "";
     		String sql = "SELECT prod_id,note_date FROM productnotes WHERE note_id = ?";
     		try {
-    			// Ô¤±àÒësql
+    			// é¢„ç¼–è¯‘sql
     			pre = (PreparedStatement) connection.clientPrepareStatement(sql);
-    			// ÉèÖÃÌõ¼ş ×Ö·û´®²éÑ¯
+    			// è®¾ç½®æ¡ä»¶ å­—ç¬¦ä¸²æŸ¥è¯¢
     			pre.setInt(1, rating);
-    			// ÕûĞÍÊı×Ö²éÑ¯
+    			// æ•´å‹æ•°å­—æŸ¥è¯¢
     			//pre.setInt(1, 1);
     			rs = pre.executeQuery();
     			while(rs.next()){
-    				// Êä³ö½á¹û¼¯
+    				// è¾“å‡ºç»“æœé›†
     				str += rs.getString(1);
     				str += rs.getString(2);
     				//System.out.print(rs.getString(1));
@@ -104,7 +104,7 @@ public class Job implements Runnable{
     						pre.close();
     					}
     				} catch (SQLException e) {
-    					System.out.println("¹Ø±ÕÎ´³É¹¦£º"+e.getMessage());
+    					System.out.println("å…³é—­æœªæˆåŠŸï¼š"+e.getMessage());
     				}
     		}
     		return str;

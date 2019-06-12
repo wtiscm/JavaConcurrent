@@ -20,12 +20,12 @@ public class ConnectionPool {
     }
     
 	public static Connection getConnection(){
-		// mysqlÁ¬½Ó
+		// mysqlè¿æ¥
 		Connection conn = null;
 		try {
 			conn = (Connection) DriverManager.getConnection(DB_URL, DB_USER, DB_PWD);
 		} catch (SQLException e) {
-			System.out.println("Êı¾İ¿âÁ¬½ÓÊ§°ÜÔ­Òò:"+e.getMessage());
+			System.out.println("æ•°æ®åº“è¿æ¥å¤±è´¥åŸå› :"+e.getMessage());
 			return null;
 		}
 		return conn;

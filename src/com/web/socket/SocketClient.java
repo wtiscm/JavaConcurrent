@@ -22,19 +22,19 @@ public class SocketClient implements Runnable {
 	}
 
 	public void connection() throws IOException{
-	    // ÒªÁ¬½ÓµÄ·şÎñ¶ËIPµØÖ·ºÍ¶Ë¿Ú
+	    // è¦è¿æ¥çš„æœåŠ¡ç«¯IPåœ°å€å’Œç«¯å£
 	    String host = "127.0.0.1";
 	    int port = 55532;
 	    int num = 1;
-	    // Óë·şÎñ¶Ë½¨Á¢Á¬½Ó
+	    // ä¸æœåŠ¡ç«¯å»ºç«‹è¿æ¥
 	    Socket socket = new Socket(host, port);
-	    // ½¨Á¢Á¬½Óºó»ñµÃÊä³öÁ÷
+	    // å»ºç«‹è¿æ¥åè·å¾—è¾“å‡ºæµ
 	    OutputStream outputStream = socket.getOutputStream();
 
 	    byte[] sendBytes;
 	    byte[] bytes;
 	    for (int i=0;i<num;i++){
-	    	String message = "ÄãºÃ,ÎÒÊÇ"+j+"¸ösocketµÄµÚ"+i+"¶ÎÊı¾İ";
+	    	String message = "ä½ å¥½,æˆ‘æ˜¯"+j+"ä¸ªsocketçš„ç¬¬"+i+"æ®µæ•°æ®";
 	    	sendBytes = message.getBytes("UTF-8");
 	    	outputStream.write(sendBytes.length >>8);
 	    	outputStream.write(sendBytes.length);
@@ -46,15 +46,15 @@ public class SocketClient implements Runnable {
 	    InputStream inputStream = socket.getInputStream();
         while (true) {
         int first = inputStream.read();
-        //Èç¹û¶ÁÈ¡µÄÖµÎª-1 ËµÃ÷µ½ÁËÁ÷µÄÄ©Î²£¬SocketÒÑ¾­±»¹Ø±ÕÁË£¬´ËÊ±½«²»ÄÜÔÙÈ¥¶ÁÈ¡
+        //å¦‚æœè¯»å–çš„å€¼ä¸º-1 è¯´æ˜åˆ°äº†æµçš„æœ«å°¾ï¼ŒSocketå·²ç»è¢«å…³é—­äº†ï¼Œæ­¤æ—¶å°†ä¸èƒ½å†å»è¯»å–
         if(first==-1){
             break;
           }
         int second = inputStream.read();
         int length = (first << 8) + second;
-        // È»ºó¹¹ÔìÒ»¸öÖ¸¶¨³¤µÄbyteÊı×é
+        // ç„¶åæ„é€ ä¸€ä¸ªæŒ‡å®šé•¿çš„byteæ•°ç»„
         bytes = new byte[length];
-        // È»ºó¶ÁÈ¡Ö¸¶¨³¤¶ÈµÄÏûÏ¢¼´¿É
+        // ç„¶åè¯»å–æŒ‡å®šé•¿åº¦çš„æ¶ˆæ¯å³å¯
         inputStream.read(bytes);
         System.out.println("get message from server: " + new String(bytes, "UTF-8")+">>>"+Thread.currentThread().getName());
         }
