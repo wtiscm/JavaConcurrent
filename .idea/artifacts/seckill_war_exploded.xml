@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="seckill:war exploded">
+    <output-path>D:/workspace/seckill/target/seckill</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>seckill</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="seckill" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="D:/workspace/seckill/target/seckill/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="seckill/web/Web" />
+    </root>
+  </artifact>
+</component>
