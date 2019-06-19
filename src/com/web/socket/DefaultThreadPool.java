@@ -23,7 +23,7 @@ public class DefaultThreadPool<Job extends Runnable> implements ThreadPool<Job> 
         for (int i=0;i<num;i++){
             Work work = new Work();
             workList.add(work);
-            Thread thread = new Thread(work,"thread >>>"+workNum.incrementAndGet());
+            Thread thread = new Thread(work,"thread-"+workNum.incrementAndGet());
             thread.start();
         }
     }

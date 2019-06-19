@@ -14,12 +14,12 @@ public class ConnectionPool {
     ConnectionPool(int count) {
         if (count > 0) {
             for (int i = 0; i < count; i++) {
-                pool.add(getConnection());
+                pool.add(createConnection());
             }
         }
     }
     
-	public static Connection getConnection(){
+	public static Connection createConnection(){
 		// mysql连接
 		Connection conn = null;
 		try {
